@@ -68,4 +68,20 @@ public class TestAddEmployee extends Base {
         Assert.assertEquals(actual, firstName + " " + lastName);
     }
 
+    /**
+     * Add employee with filling all the fields except First Name
+     */
+    @Test (priority = 3)
+    public void testAddEmployeeWithoutFirstName() {
+        driver.findElement(By.id("middleName")).sendKeys(middleName);
+        driver.findElement(By.id("lastName")).sendKeys(lastName);
+        driver.findElement(By.id("photofile")).sendKeys(pngImg);
+
+//        Create login details
+        driver.findElement(By.id("chkLogin")).click();
+
+        String actual = driver.findElement(By.className("validation-error")).getText();
+        Assert.assertEquals(actual, "Required");
+    }
+
 }
